@@ -6,6 +6,7 @@ export class ListLexer extends Lexer {
   static readonly COMMA = 3
   static readonly LBRACK = 4
   static readonly RBRACK = 5
+  static readonly EQUALS = 6
   static readonly tokenNames = [
     'n/a',
     '<EOF>',
@@ -13,6 +14,7 @@ export class ListLexer extends Lexer {
     'COMMA',
     'LBRACK',
     'RBRACK',
+    'EQUALS',
   ]
 
   WS() {
@@ -57,7 +59,7 @@ export class ListLexer extends Lexer {
   }
 
   nextToken(): Token {
-    const { COMMA, LBRACK, RBRACK } = ListLexer
+    const { COMMA, LBRACK, RBRACK, EQUALS } = ListLexer
     while (this.c !== Lexer.EOF) {
       switch (this.c) {
         case ' ':
@@ -72,6 +74,9 @@ export class ListLexer extends Lexer {
         case '[':
           this.consume()
           return new Token(LBRACK, '[')
+        case '=':
+          this.consume()
+          return new Token(EQUALS, '=')
         case ']':
           this.consume()
           return new Token(RBRACK, ']')

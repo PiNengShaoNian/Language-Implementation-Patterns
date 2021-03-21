@@ -1,4 +1,4 @@
-import { Token } from "./Token"
+import { Token } from './Token'
 
 export abstract class Lexer {
   input: string
@@ -13,4 +13,6 @@ export abstract class Lexer {
   }
 
   abstract nextToken(): Token
+
+  abstract getTokenName(x: number): string
 }
